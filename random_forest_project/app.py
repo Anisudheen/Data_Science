@@ -2,11 +2,15 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
 
 # ---------- Load model & encoder ----------
 @st.cache_resource
 def load_artifacts():
-    artifacts = joblib.load("breast_cancer_rf_with_encoder.pkl")
+    base_dir = os.path.dirname(__file__)
+    artifacts = joblib.load(
+        os.path.join(base_dir, "breast_cancer_rf_with_encoder.pkl")
+    )
     model = artifacts["model"]
     le = artifacts["label_encoder"]
     return model, le
