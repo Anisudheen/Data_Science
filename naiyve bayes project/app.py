@@ -1,19 +1,22 @@
 import streamlit as st
 import numpy as np
 import joblib
+import os
 
 # -------------------------------
 # Load saved model and preprocessors
 # -------------------------------
+
 @st.cache_resource
 def load_artifacts():
-    model = joblib.load("naive_bayes_model.pkl")
-    imputer = joblib.load("imputer.pkl")
-    sex_encoder = joblib.load("sex_encoder.pkl")
-    embarked_encoder = joblib.load("embarked_encoder.pkl")
-    return model, imputer, sex_encoder, embarked_encoder
+    base_dir = os.path.dirname(__file__)
 
-model, imputer, sex_encoder, embarked_encoder = load_artifacts()
+    model = joblib.load(os.path.join(base_dir, "naive_bayes_model.pkl"))
+    imputer = joblib.load(os.path.join(base_dir, "imputer.pkl"))
+    sex_encoder = joblib.load(os.path.join(base_dir, "sex_encoder.pkl"))
+    embarked_encoder = joblib.load(os.path.join(base_dir, "embarked_encoder.pkl"))
+
+    return model, imputer, sex_encoder, embarked_encoder
 
 # -------------------------------
 # App UI
