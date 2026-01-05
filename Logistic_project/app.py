@@ -2,12 +2,16 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Load saved objects
+import os
+
 @st.cache_resource
 def load_model_and_encoder():
-    model = joblib.load("titanic_model.pkl")
-    le_sex = joblib.load("sex_encoder.pkl")
-    feature_names = joblib.load("feature_names.pkl")  # ["Pclass","Sex","Age","SibSp","Parch","Fare"]
+    base_dir = os.path.dirname(__file__)
+
+    model = joblib.load(os.path.join(base_dir, "logistic_model.pkl"))
+    le_sex = joblib.load(os.path.join(base_dir, "sex_encoder.pkl"))
+    feature_names = joblib.load(os.path.join(base_dir, "feature_names.pkl"))
+
     return model, le_sex, feature_names
 
 def main():
