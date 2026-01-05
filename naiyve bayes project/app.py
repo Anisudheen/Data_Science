@@ -18,6 +18,8 @@ def load_artifacts():
 
     return model, imputer, sex_encoder, embarked_encoder
 
+model, imputer, sex_encoder, embarked_encoder = load_artifacts()
+
 # -------------------------------
 # App UI
 # -------------------------------
