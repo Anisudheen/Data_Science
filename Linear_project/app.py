@@ -1,11 +1,15 @@
 import numpy as np
 import joblib
 import streamlit as st
+import os
 
 @st.cache_resource
 def load_model():
-    model = joblib.load("linear_model.pkl")
+    base_dir = os.path.dirname(__file__)
+    model_path = os.path.join(base_dir, "linear_model.pkl")
+    model = joblib.load(model_path)
     return model
+
 
 model = load_model()
 
