@@ -8,7 +8,7 @@ import os
 def load_model_and_encoder():
     base_dir = os.path.dirname(__file__)
 
-    model = joblib.load(os.path.join(base_dir, "logistic_model.pkl"))
+    model = joblib.load(os.path.join(base_dir, "titanic_model.pkl"))
     le_sex = joblib.load(os.path.join(base_dir, "sex_encoder.pkl"))
     feature_names = joblib.load(os.path.join(base_dir, "feature_names.pkl"))
 
